@@ -23,12 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final dio = Dio();
-
-    //localhost
-    const emulatorIp = '10.0.2.2:3000';
-    const simulatorIp = '127.0.0.1:3000';
-
-    final ip = Platform.isIOS ? simulatorIp : emulatorIp;
     return DefaultLayout(
       child: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -78,8 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     );
-
-                    print(response);
 
                     final refreshToken = response.data['refreshToken'];
                     final accessToken = response.data['accessToken'];
