@@ -1,8 +1,36 @@
 import 'package:actual/common/const/colors.dart';
+import 'package:actual/restaurant/model/restaurant_detail_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final Image image;
+  final String name;
+  final String detail;
+  final int price;
+
+  const ProductCard({
+    Key? key,
+    required this.image,
+    required this.name,
+    required this.detail,
+    required this.price,
+  }) : super(key: key);
+
+  factory ProductCard.fromModel({
+    required RestaurantProductModel productModel,
+  }) {
+    return ProductCard(
+      image: Image.network(
+        productModel.imgUrl,
+        width: 110,
+        height: 110,
+        fit: BoxFit.cover,
+      ),
+      name: productModel.name,
+      detail: productModel.detail,
+      price: productModel.price,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +41,7 @@ class ProductCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               8.0,
             ),
-            child: Image.asset(
-              'asset/img/food/ddeok_bok_gi.jpg',
-              width: 110,
-              height: 110,
-              fit: BoxFit.cover,
-            ),
+            child: image,
           ),
           const SizedBox(width: 16.0),
           Expanded(
@@ -27,14 +50,14 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '떡볶이',
+                  name,
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
-                  '전통 떡볶이의 정석!\n맛있습니다.',
+                  detail,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -43,7 +66,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '원10000',
+                  price.toString(),
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: PRIMARY_COLOR,
