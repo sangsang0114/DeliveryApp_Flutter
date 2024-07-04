@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:actual/common/component/custom_text_form_field.dart';
 import 'package:actual/common/const/colors.dart';
@@ -87,14 +86,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: PRIMARY_COLOR,
+                    backgroundColor: PRIMARY_COLOR,
                   ),
                   child: const Text('로그인'),
                 ),
                 TextButton(
                   onPressed: () async {},
                   style: TextButton.styleFrom(
-                    primary: Colors.black,
+                    backgroundColor: Colors.black,
                   ),
                   child: const Text('회원가입'),
                 ),
