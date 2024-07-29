@@ -4,7 +4,7 @@ import 'package:actual/common/model/cursor_pagination_model.dart';
 import 'package:actual/common/model/pagination_params.dart';
 import 'package:actual/restaurant/model/restaurant_detail_model.dart';
 import 'package:actual/restaurant/model/restaurant_model.dart';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' hide Headers;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
 
@@ -23,11 +23,17 @@ abstract class RestaurantRepository {
       _RestaurantRepository;
 
   @GET('/')
+  @Headers({
+    'accessToken' : 'true',
+  })
   Future<CursorPagination<RestaurantModel>> paginate(
       {@Queries()
       PaginationParams? paginationParams = const PaginationParams()});
 
   @GET('/{id}')
+  @Headers({
+    'accessToken': 'true',
+  })
   Future<RestaurantDetailModel> getRestaurantDetail({
     @Path() required String id,
   });
