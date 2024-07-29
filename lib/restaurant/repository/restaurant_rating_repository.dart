@@ -1,5 +1,6 @@
 import 'package:actual/common/model/cursor_pagination_model.dart';
 import 'package:actual/common/model/pagination_params.dart';
+import 'package:actual/rating/model/rating_model.dart';
 import 'package:actual/restaurant/model/restaurant_model.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/http.dart';
@@ -15,7 +16,7 @@ abstract class RestaurantRatingRepository{
   @Headers({
     'accessToken' : 'true',
   })
-  Future<CursorPagination<RestaurantModel>> paginate(
+  Future<CursorPagination<RatingModel>> paginate(
       {@Queries()
       PaginationParams? paginationParams = const PaginationParams()});
 }
