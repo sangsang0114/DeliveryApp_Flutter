@@ -10,7 +10,9 @@ class PaginationProvider<T extends IModelWithId,
   final U repository;
 
   PaginationProvider({required this.repository})
-      : super(CursorPaginationLoading());
+      : super(CursorPaginationLoading()) {
+    paginate();
+  }
 
   Future<void> paginate({
     int fetchCount = 20,
@@ -20,7 +22,7 @@ class PaginationProvider<T extends IModelWithId,
     //false : 새로고침(현재 상태를 덮어씀)
     bool fetchMore = false,
 
-    //강제로 다시 로딩하기
+    //강제로f 다시 로딩하기
     //true : CursorPaginationLoading()
     bool forceRefetch = false,
   }) async {
@@ -99,7 +101,9 @@ class PaginationProvider<T extends IModelWithId,
       } else {
         state = resp;
       }
-    } catch (e) {
+    } catch (e,stack) {
+      print(e);
+      print(stack);
       state = CursorPaginationError(message: '데이터를 가져오지 못했습니다');
     }
   }
