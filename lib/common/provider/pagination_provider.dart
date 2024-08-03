@@ -3,8 +3,9 @@ import 'package:actual/common/model/pagination_params.dart';
 import 'package:actual/common/repository/base_pagination_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PaginationProvider extends StateNotifier<CursorPaginationBase> {
-  final IBasePaginationRepository repository;
+class PaginationProvider<U extends IBasePaginationRepository>
+    extends StateNotifier<CursorPaginationBase> {
+  final U repository;
 
   PaginationProvider({required this.repository})
       : super(CursorPaginationLoading());
