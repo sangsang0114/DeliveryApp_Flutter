@@ -25,15 +25,18 @@ class AuthRepository {
     required String password,
   }) async {
     final serialized = DataUtils.plainToBase64('$username:$password');
+    print("serialized $serialized");
+    print('hello world2');
+
     final resp = await dio.post(
       '$baseUrl/login',
       options: Options(
         headers: {
-          'authorization': 'Basic $serialized',
+          'authorization': 'Basic dGVzdEBjb2RlZmFjdG9yeS5haTp0ZXN0dGVzdA==',
         },
       ),
     );
-
+    print('hello world');
     return LoginResponse.fromJson(resp.data);
   }
 
