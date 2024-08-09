@@ -66,7 +66,7 @@ class BasketProvider extends StateNotifier<List<BasketItemModel>> {
   }
 
   Future<void> removeFromBasket({
-    required RestaurantProductModel product,
+    required ProductModel product,
     bool isDelete = false,
   }) async {
     // 1) 장바구니에 상품이 존재할 때
@@ -80,7 +80,7 @@ class BasketProvider extends StateNotifier<List<BasketItemModel>> {
     if (!exists) return;
 
     final existingProduct = state.firstWhere((e) => e.product.id == product.id);
-    if (existingProduct == 1 || isDelete) {
+    if (existingProduct.count == 1 || isDelete) {
       state = state.where((e) => e.product.id != product.id).toList();
     } else {
       state = state
